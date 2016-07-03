@@ -1,0 +1,146 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      5772,        137]
+NotebookOptionsPosition[      5476,        123]
+NotebookOutlinePosition[      5859,        139]
+CellTagsIndexPosition[      5816,        136]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"System", "[", "AllVars", "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"System", "[", "name", "]"}], ",", "SystemName", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "Confpreset", "]"}], ",", 
+     "SystemConfigurationPreset", ",", "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "ICpreset", "]"}], ",", 
+     "SytstemInitialConditionPreset", ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "System", " ", "Configuration", " ", "and", " ", "Initial", " ", 
+       "Conditions"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "n", "]"}], ",", "NumberOfTotalMasses", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "m", "]"}], ",", "MassArray", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "k", "]"}], ",", "StiffnessArray", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "\[Omega]", "]"}], ",", 
+     "IndependentFrequencyArray", ",", "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "q0", "]"}], ",", "InitialPositionVector", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "dq0", "]"}], ",", "InitialVelocityVector", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "Q", "]"}], ",", "ExternalExcitationVector", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "Fspr", "]"}], ",", "SpringForce", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "Vspr", "]"}], ",", "SpringPotential", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "qfft", "]"}], ",", "FFTOfDisplacementOfPrimary", 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"Simulation", " ", "Parameters"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SymbolicPrecision", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SolverAccuracy", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SolverPrecision", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "FftMaxFreq", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "TIME", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"EigenSolution", " ", "Parameters"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "M", "]"}], ",", "MassMatrix", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "K", "]"}], ",", "StiffnessMatrix", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "U", "]"}], ",", "EigenVectors", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "\[CapitalOmega]", "]"}], ",", "EigenFrequencies",
+      ",", "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "Um", "]"}], ",", "MassNormalizedEigenVectors", 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Displacement", " ", "and", " ", "Modal", " ", "Solution", " ", 
+       "Parameters"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "\[Eta]", "]"}], ",", "ModalDisplacement", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "q", "]"}], ",", "Displacement", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "qn", "]"}], ",", "NumericSolutionOfDisplacement",
+      ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"Energy", " ", "Parameters"}], " ", "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "ETot", "]"}], ",", "TotalEnergyOfSystem", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "EImp", "]"}], ",", "ImpartedEnergyToSystem", ",",
+      "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "EperSat", "]"}], ",", "EnergyOfEachSattalite", 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "EModal", "]"}], ",", "ModalEnergyOfEachMode", 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"System", " ", "Functions"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SolveSystem", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SolveLinearSystem", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SolveNonLinearSystem", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "EigenSolution", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SolveAnalytic", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SolveEnergiesAnalytic", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "EigenSolution", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SolveNonLinearNumeric", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"System", "[", "SolveEnergiesNonLinear", "]"}], ","}], 
+    "\[IndentingNewLine]", "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.4885392839306545`*^9, 3.488539404498551*^9}, {
+  3.488539436079357*^9, 3.488539443981809*^9}}]
+},
+WindowSize->{387, 355},
+WindowMargins->{{Automatic, -815}, {-36, Automatic}},
+Magnification->0.8999999761581421,
+FrontEndVersion->"7.0 for Microsoft Windows (64-bit) (February 18, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 4927, 101, 1072, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

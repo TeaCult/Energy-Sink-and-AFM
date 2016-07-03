@@ -1,0 +1,246 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      8425,        237]
+NotebookOptionsPosition[      8128,        223]
+NotebookOutlinePosition[      8512,        239]
+CellTagsIndexPosition[      8469,        236]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Class", " ", "Variables"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"SYSTEM", " ", "STRUCTURE"}], "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "name", "]"}], "=", "SystemName"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "Confpreset", "]"}], "=", 
+     "SystemConfigurationPreset"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "ICpreset", "]"}], "=", 
+     "SytstemInitialConditionPreset"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "System", " ", "Configuration", " ", "and", " ", "Initial", " ", 
+     "Conditions"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "n", "]"}], "=", "NumberOfTotalMasses"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "m", "]"}], "=", "MassArray"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "k", "]"}], "=", "StiffnessArray"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "\[Omega]", "]"}], "=", 
+     "IndependentFrequencyArray"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "q0", "]"}], "=", "InitialPositionVector"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "dq0", "]"}], "=", "InitialVelocityVector"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "Q", "]"}], "=", "ExternalExcitationVector"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "Fspr", "]"}], "=", "SpringForce"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "Vspr", "]"}], "=", "SpringPotential"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "qfft", "]"}], "=", 
+     "FFTOfDisplacementOfPrimary"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Simulation", " ", "Parameters"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SymbolicPrecision", "]"}], "=", 
+     "PrecisionOfAnalyticExpressions"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SimAccuracy", "]"}], "=", 
+     "NumericSolverPrecision"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SimPrecision", "]"}], "=", 
+     "NumericSolverAccuracy"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "FftMaxFreq", "]"}], "=", 
+     "MaximumFrequencyForFFT"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "TIME", "]"}], "=", "SimulationTime"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"EigenSolution", " ", "Parameters"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "M", "]"}], "=", "MassMatrix"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "K", "]"}], "=", "StiffnessMatrix"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "U", "]"}], "=", "EigenVectors"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "\[CapitalOmega]", "]"}], "=", 
+     "EigenFrequencies"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "Um", "]"}], "=", "MassNormalizedEigenVectors"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Displacement", " ", "and", " ", "Modal", " ", "Solution", " ", 
+     "Parameters"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "\[Eta]", "]"}], "=", "ModalDisplacement"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "q", "]"}], "=", "Displacement"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "qn", "]"}], "=", 
+     "NumericSolutionOfDisplacement"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Energy", " ", "Parameters"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "ETot", "]"}], "=", "TotalEnergyOfSystem"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "EImp", "]"}], "=", "ImpartedEnergyToSystem"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "EperSat", "]"}], "=", "EnergyOfEachSattalite"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "EModal", "]"}], "=", "ModalEnergyOfEachMode"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "EForce", "]"}], "=", 
+     "EnergyImpartedByExternalExcitation"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"System", " ", "Functions"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SolveSystem", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SolveLinearSystem", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SolveNonLinearSystem", "]"}], ":=", "0"}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "EigenSolution", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SolveAnalytic", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SolveEnergiesAnalytic", "]"}], ":=", "0"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "EigenSolution", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SolveNonLinearNumeric", "]"}], ":=", "0"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SolveEnergiesNonLinear", "]"}], ":=", "0"}], 
+    ";"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.488460158382703*^9, 3.4884602012401543`*^9}, {
+   3.4884611354695888`*^9, 3.4884611376547136`*^9}, {3.488461710964505*^9, 
+   3.488461712306582*^9}, {3.4884617764102488`*^9, 3.4884618023267307`*^9}, {
+   3.4885167087321978`*^9, 3.488516743412181*^9}, {3.4885174743509884`*^9, 
+   3.488517479416278*^9}, {3.4885186622149305`*^9, 3.488518693692731*^9}, {
+   3.488518737549239*^9, 3.4885187687420235`*^9}, {3.488523960954198*^9, 
+   3.488523962115264*^9}, {3.488523992602008*^9, 3.488523994067092*^9}, {
+   3.488527487873926*^9, 3.4885275038798413`*^9}, {3.4885276467960157`*^9, 
+   3.4885276498361893`*^9}, 3.4885277085455475`*^9, {3.4885277601695004`*^9, 
+   3.488527768328967*^9}, {3.4885311576368246`*^9, 3.488531159277918*^9}, {
+   3.4885380969387627`*^9, 3.488538115680835*^9}, {3.488539208584345*^9, 
+   3.488539223841218*^9}, {3.4885392596552663`*^9, 3.4885392981704693`*^9}, {
+   3.488544368039449*^9, 3.488544372227689*^9}, {3.4885487505891166`*^9, 
+   3.488548812448655*^9}, {3.4885998551011276`*^9, 3.4885998676028423`*^9}, {
+   3.4886037006160784`*^9, 3.4886037060533895`*^9}, {3.488606553289242*^9, 
+   3.4886065600486283`*^9}, {3.488607550202262*^9, 3.4886075510343094`*^9}, 
+   3.4886112804976225`*^9}]
+},
+WindowSize->{416, 862},
+WindowMargins->{{Automatic, -1251}, {-41, Automatic}},
+Magnification->0.8999999761581421,
+FrontEndVersion->"7.0 for Microsoft Windows (64-bit) (February 18, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 7579, 201, 1036, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

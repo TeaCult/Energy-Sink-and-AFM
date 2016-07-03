@@ -1,0 +1,377 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     16000,        368]
+NotebookOptionsPosition[     15703,        354]
+NotebookOutlinePosition[     16086,        370]
+CellTagsIndexPosition[     16043,        367]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"PRESETS", " ", "AND", " ", "SOME", " ", "GLOBAL", " ", "VARS"}], 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"StdLinSys", "=", "StandardLinearSystem"}], ";"}], " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"StdOptSys", "=", "StandardOptimumSystem"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"StdNonLin", "=", "MorsePotential"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Custom", "=", "UserDefined"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ImpRes", "=", "ImpulseResponse"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ExtPrim", "=", "ExternalExcitationToPrimary"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SetStdParams", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SetImpulseResp", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SetExtExcToPrim", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SetStdSysLin", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SetStdSysOpt", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SetSysFromOmega", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "ListSimParams", "]"}], ":=", "0"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"System", "[", "ListSimParams", "]"}], ":=", 
+    RowBox[{"(", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", 
+      RowBox[{
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"System", "[", "Confpreset", "]"}], ",", 
+           "\"\<SystemConfigurationPreset\>\""}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"System", "[", "ICpreset", "]"}], ",", 
+           "\"\<SytstemInitialConditionPreset\>\""}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Short", "[", 
+            RowBox[{
+             RowBox[{"Rationalize", "[", 
+              RowBox[{"System", "[", "q0", "]"}], "]"}], ",", "0.25"}], "]"}],
+            ",", "\"\<InitialPositionVector\>\""}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Short", "[", 
+            RowBox[{
+             RowBox[{"Rationalize", "[", 
+              RowBox[{"System", "[", "dq0", "]"}], "]"}], ",", "0.25"}], 
+            "]"}], ",", "\"\<InitialVelocityMatrix\>\""}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Short", "[", 
+            RowBox[{
+             RowBox[{"Rationalize", "[", 
+              RowBox[{"System", "[", "Q", "]"}], "]"}], ",", "0.25"}], "]"}], 
+           ",", "\"\<ExternalExcitationVector\>\""}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"System", "[", "Fspr", "]"}], ",", "\"\<SpringForce\>\""}],
+           "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"System", "[", "SymbolicPrecision", "]"}], ",", 
+           "\"\<SymbolicPrecision\>\""}], "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"System", "[", "SimAccuracy", "]"}], ",", 
+           "\"\<Simulation Accuracy\>\""}], "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"System", "[", "SimPrecision", "]"}], ",", 
+           "\"\<Simulation Precision\>\""}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"System", "[", "FftMaxFreq", "]"}], ",", 
+           "\"\<MaxFrequencyInFFT\>\""}], "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"System", "[", "TIME", "]"}], ",", 
+           "\"\<Simulation TIME Length\>\""}], "}"}]}], "\[IndentingNewLine]",
+         "}"}], "//", "MatrixForm"}], "]"}], "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", ")"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"System", "[", "SetStdParams", "]"}], ":=", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"System", "[", "TIME", "]"}], "=", "2000"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "SimPrecision", "]"}], "=", "12"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "SimAccuracy", "]"}], "=", "12"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "SymbolicPrecision", "]"}], "=", "32"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "FftMaxFreq", "]"}], "=", "5"}], ";"}], 
+     "\[IndentingNewLine]", ")"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"System", "[", "SetImpulseResp", "]"}], ":=", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"System", "[", "ICpreset", "]"}], "=", 
+       "\"\<Impulse Response (Impulse to Primary)\>\""}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"nt", "=", 
+       RowBox[{"System", "[", "n", "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"temp", "=", 
+       RowBox[{"ConstantArray", "[", 
+        RowBox[{"0", ",", "nt"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "Q", "]"}], "=", 
+       RowBox[{
+        RowBox[{"System", "[", "dq0", "]"}], "=", 
+        RowBox[{
+         RowBox[{"System", "[", "q0", "]"}], "=", "temp"}]}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"temp", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "=", "1"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "dq0", "]"}], "=", "temp"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Clear", "[", 
+       RowBox[{"temp", ",", "nt"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     ")"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"System", "[", "SetExtExcToPrim", "]"}], ":=", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"System", "[", "ICPreset", "]"}], "=", 
+       "\"\<External Excitation To Primary\>\""}], ";", "\[IndentingNewLine]", 
+      RowBox[{"temp", "=", 
+       RowBox[{"ConstantArray", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{"System", "[", "n", "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "Q", "]"}], "=", 
+       RowBox[{
+        RowBox[{"System", "[", "dq0", "]"}], "=", 
+        RowBox[{
+         RowBox[{"System", "[", "q0", "]"}], "=", "temp"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"temp", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "=", 
+       RowBox[{"Sin", "[", "t", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "Q", "]"}], "=", "temp"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Clear", "[", "temp", "]"}], ";"}], "\[IndentingNewLine]", 
+     ")"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"System", "[", "SetStdSysLin", "]"}], ":=", "\[IndentingNewLine]", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"System", "[", "Confpreset", "]"}], "=", 
+       "\"\<LineerSystemLineerFrequencyDist 0-2 rad/sec\>\""}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"nt", "=", "100"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"\[Omega]t", "=", 
+       RowBox[{"ConstantArray", "[", 
+        RowBox[{"0", ",", "nt"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "2"}], ",", 
+        RowBox[{"i", "<", 
+         RowBox[{"nt", "+", "1"}]}], ",", 
+        RowBox[{"++", "i"}], ",", 
+        RowBox[{
+         RowBox[{"\[Omega]t", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "=", 
+         RowBox[{
+          RowBox[{"2", "/", 
+           RowBox[{"(", 
+            RowBox[{"nt", "-", "1"}], ")"}]}], "*", "i"}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\[Omega]t", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "=", "1"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "n", "]"}], "=", "nt"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "\[Omega]", "]"}], "=", "\[Omega]t"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"System", "[", "CreateSysFromOmega", "]"}], ";"}], 
+     "\[IndentingNewLine]", ")"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"System", "[", "SetStdSysOpt", "]"}], ":=", "\[IndentingNewLine]", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"System", "[", "Confpreset", "]"}], "=", 
+       "\"\<Lineer System optimized frequency distributions\>\""}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"System", "[", "\[Omega]", "]"}], "=", 
+       RowBox[{"N", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+          "1", ",", "1.25046342663753", ",", "1.21793947218943", ",", 
+           "1.00287175105722", ",", "0.829503204019052", ",", 
+           "0.994275840616342", ",", "0.990037114421945", ",", 
+           "0.878955118528883", ",", "0.976658557288460", ",", 
+           "0.883337610340081", ",", "1.08333624207787", ",", 
+           "0.874491508119232", ",", "1.17872996443854", ",", 
+           "0.887746808658911", ",", "1.15180402512120", ",", 
+           "1.07296422457843", ",", "0.751537039383106", ",", 
+           "0.790483820637464", ",", "0.905795442762578", ",", 
+           "1.05802431446775", ",", "0.914842187442993", ",", 
+           "0.985842526044666", ",", "1.23903629674719", ",", 
+           "0.952109652092449", ",", "0.843099352145036", ",", 
+           "1.02954081273606", ",", "0.966679060643153", ",", 
+           "0.847590209740284", ",", "0.856578284420052", ",", 
+           "0.869989274736065", ",", "0.852110555888363", ",", 
+           "1.20795613516513", ",", "0.981874031033416", ",", 
+           "1.11046271067682", ",", "0.942585186089950", ",", 
+           "1.13954745891306", ",", "0.924035952578139", ",", 
+           "0.947320681238165", ",", "0.971617582187494", ",", 
+           "0.892150650378390", ",", "0.919421559110920", ",", 
+           "1.10488796347336", ",", "0.937913494599069", ",", 
+           "1.17190083920356", ",", "0.928655976535449", ",", 
+           "1.01601014968708", ",", "0.933260740696171", ",", 
+           "1.12768058061995", ",", "0.901311267952485", ",", 
+           "1.04827523124165", ",", "0.824855274584758", ",", 
+           "1.11605182499893", ",", "0.834029193653786", ",", 
+           "1.03414623167133", ",", "0.961781657585011", ",", 
+           "1.32834080099387", ",", "1.20076116539589", ",", 
+           "1.29060001098521", ",", "1.19359174161462", ",", 
+           "0.896774961110915", ",", "1.18573665036900", ",", 
+           "1.30754500481979", ",", "1.12177337509548", ",", 
+           "1.05313985487859", ",", "0.838572997746105", ",", 
+           "1.09938036855499", ",", "0.800826411766995", ",", 
+           "1.07809827521806", ",", "0.820165546813477", ",", 
+           "1.03880637115979", ",", "0.861015501126513", ",", 
+           "1.14561018590893", ",", "0.956925830720000", ",", 
+           "1.04346214472772", ",", "0.773672862166070", ",", 
+           "1.01155225778866", ",", "0.810676785734697", ",", 
+           "0.910274963443276", ",", "1.16516475720235", ",", 
+           "1.02497996083436", ",", "1.13361881393468", ",", 
+           "0.865466552066545", ",", "1.22826076345449", ",", 
+           "0.785130028902354", ",", "0.795712997161774", ",", 
+           "0.767286440816674", ",", "0.760073282337135", ",", 
+           "0.998525806992197", ",", "1.15797528731106", ",", 
+           "0.779591037255434", ",", "1.00718180579661", ",", 
+           "1.27597187828249", ",", "0.805836277584847", ",", 
+           "0.815471862864116", ",", "1.02043518068529", ",", 
+           "1.26282207192345", ",", "1.08861745881931", ",", 
+           "1.06791401873149", ",", "1.09398539432362", ",", 
+           "1.06294125793547"}], "}"}], ",", 
+         RowBox[{"System", "[", "SymbolicPrecision", "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"System", "[", "CreateSysFromOmega", "]"}], ";"}], 
+     "\[IndentingNewLine]", ")"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.488459966471726*^9, 3.4884600828263807`*^9}, {
+   3.48846174811263*^9, 3.488461765175606*^9}, {3.4884630705262675`*^9, 
+   3.4884630992549105`*^9}, 3.4884634957775908`*^9, {3.488463861080485*^9, 
+   3.4884639354827404`*^9}, {3.4884642301715956`*^9, 3.488464265090593*^9}, {
+   3.488464408417791*^9, 3.488464499601006*^9}, {3.4884647560576744`*^9, 
+   3.4884648664129868`*^9}, {3.4885165872212477`*^9, 3.488516589100355*^9}, {
+   3.488516962831731*^9, 3.4885170338207912`*^9}, 3.4885173473887267`*^9, {
+   3.4885184208371243`*^9, 3.488518464132601*^9}, {3.488518528751297*^9, 
+   3.4885185291003165`*^9}, {3.4885219715874124`*^9, 3.48852200703644*^9}, {
+   3.4885221353247776`*^9, 3.488522268522396*^9}, {3.488527378195653*^9, 
+   3.488527449914755*^9}, {3.488527506969018*^9, 3.4885276239467087`*^9}, {
+   3.4885276559875417`*^9, 3.4885276822710447`*^9}, {3.4885277317618756`*^9, 
+   3.488527749202873*^9}, {3.4885277805066633`*^9, 3.4885277844038863`*^9}, {
+   3.4885278529398065`*^9, 3.488527879821344*^9}, {3.488528011902899*^9, 
+   3.4885280695601964`*^9}, {3.4885281233582735`*^9, 
+   3.4885282202698164`*^9}, {3.4885282528316793`*^9, 
+   3.4885282874956617`*^9}, {3.488528849852827*^9, 3.4885289186807632`*^9}, {
+   3.4885289663004875`*^9, 3.488529158309469*^9}, {3.4885447415388117`*^9, 
+   3.488544750178306*^9}, {3.488544800122163*^9, 3.4885448128738923`*^9}, {
+   3.4885451015044007`*^9, 3.488545144184842*^9}, {3.4885453378749204`*^9, 
+   3.488545350745657*^9}, 3.488545675308221*^9, {3.4885469999569864`*^9, 
+   3.4885470001539974`*^9}, {3.488548618067537*^9, 3.4885486742527504`*^9}, {
+   3.488549043413865*^9, 3.4885490554585543`*^9}, {3.4885491051393957`*^9, 
+   3.4885491275156755`*^9}, {3.4885528366908283`*^9, 3.488552918458505*^9}, {
+   3.488603455414054*^9, 3.4886035142144165`*^9}, {3.4886049189127607`*^9, 
+   3.488604954351788*^9}, {3.488606416271405*^9, 3.4886064219987326`*^9}, {
+   3.488606569823188*^9, 3.4886065883342466`*^9}, {3.4886066473276205`*^9, 
+   3.488606653422969*^9}}]
+},
+WindowSize->{388, 463},
+WindowMargins->{{Automatic, -815}, {Automatic, -56}},
+Magnification->0.8999999761581421,
+FrontEndVersion->"7.0 for Microsoft Windows (64-bit) (February 18, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 15154, 332, 3070, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

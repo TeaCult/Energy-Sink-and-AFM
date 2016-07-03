@@ -1,0 +1,124 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      3393,        115]
+NotebookOptionsPosition[      2865,         92]
+NotebookOutlinePosition[      3265,        109]
+CellTagsIndexPosition[      3222,        106]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"sdk", " ", "testbed"}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "Test", " ", "1", " ", "a", " ", "Custom", " ", "Linear", " ", "System", 
+    " ", "to", " ", "the", " ", "report"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "name", "]"}], "=", 
+     "\"\<Lineer SDOF System Impulse Response\>\""}], ";"}], 
+   "\n"}]}]], "Input",
+ CellChangeTimes->{{3.488552478226325*^9, 3.488552507022972*^9}, {
+  3.4885525562827897`*^9, 3.4885525592269583`*^9}, {3.488553025739641*^9, 
+  3.4885530345461445`*^9}, {3.48871379273522*^9, 3.4887138018627424`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "name", "]"}], "=", 
+     "\"\<Lineer System with 99 Sattalites Lineer Frequency Distributions 0-2 \
+Hz - External Excitation To Primary- 10 rs\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"System", "[", "SetStdParams", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"System", "[", "SymbolicPrecision", "]"}], "=", "16"}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"System", "[", "SetStdSysOpt", "]"}], ";"}], "\n", 
+   RowBox[{"System", "[", "n", "]"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.4886035687055335`*^9, 3.48860356898555*^9}, {
+  3.48871376335454*^9, 3.488713775727247*^9}, {3.4887139516383085`*^9, 
+  3.488713961655882*^9}}],
+
+Cell[BoxData["100"], "Output",
+ CellChangeTimes->{
+  3.4887139619709*^9, {3.488714000840123*^9, 3.4887140180541077`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"System", "[", "SetExtExcToPrim", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"temp", "=", 
+   RowBox[{"System", "[", "Q", "]"}]}], ";", 
+  RowBox[{
+   RowBox[{"temp", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "=", 
+   RowBox[{"Sin", "[", 
+    RowBox[{"10", " ", "t"}], "]"}]}], ";", 
+  RowBox[{
+   RowBox[{"System", "[", "Q", "]"}], "=", "temp"}], ";", 
+  RowBox[{"Clear", "[", "temp", "]"}], ";"}], "\n", 
+ RowBox[{"AbsoluteTiming", "[", 
+  RowBox[{
+   RowBox[{"System", "[", "SolveSystem", "]"}], ";"}], "]"}]}], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"39.2802467`9.045719200210488", ",", "Null"}], "}"}]], "Output",
+ CellChangeTimes->{3.4887140592884665`*^9}]
+}, Open  ]]
+},
+WindowSize->{615, 401},
+WindowMargins->{{52, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+Magnification->0.8999999761581421,
+FrontEndVersion->"7.0 for Microsoft Windows (64-bit) (February 18, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 631, 16, 64, "Input"],
+Cell[CellGroupData[{
+Cell[1201, 40, 781, 19, 172, "Input"],
+Cell[1985, 61, 121, 2, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2143, 68, 556, 16, 64, "Input"],
+Cell[2702, 86, 147, 3, 27, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
